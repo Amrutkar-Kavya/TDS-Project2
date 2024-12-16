@@ -17,17 +17,14 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import openai
 
-# HARD-CODED API KEY (NOT RECOMMENDED)
-openai.api_key = "YOUR_API_KEY_HERE"  # Replace with your actual key for testing only
+openai.api_key = "YOUR_API_KEY_HERE"  
 
 MODEL_NAME = "gpt-4o-mini"
 
 def load_and_clean_data(dataset_path):
-    # Try UTF-8 first
     try:
         df = pd.read_csv(dataset_path, encoding="utf-8")
     except UnicodeDecodeError:
-        # Fallback to latin1 if UTF-8 fails
         df = pd.read_csv(dataset_path, encoding="latin1")
     
     missing_values = df.isnull().sum()
